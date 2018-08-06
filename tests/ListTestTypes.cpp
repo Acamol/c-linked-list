@@ -1,4 +1,5 @@
 #include <cstring>
+#include "ListTestTypes.hpp"
 
 // List of strings
 int string_compare(const ListData* a, const ListData* b) {
