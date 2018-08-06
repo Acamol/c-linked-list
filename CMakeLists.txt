@@ -58,7 +58,8 @@ set(HEADERS
 set(SOURCES
         src/list.c)
 set(TESTFILES
-        tests/test.cpp
+        tests/list.cpp
+        tests/iterator.cpp
         tests/main.cpp)
 set(TEST_MAIN
         unit_tests.x)
