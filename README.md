@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/Acamol/c-linked-list.svg?branch=master)](https://travis-ci.org/Acamol/c-linked-list)
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/Acamol/c-linked-list/blob/master/LICENCE)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/Acamol/c-linked-list/blob/master/LICENSE)
 
 
 List
