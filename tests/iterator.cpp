@@ -4,6 +4,21 @@ extern "C" {
 #include "list.h"
 }
 
+// List of integers
+int int_compare(const ListData * a, const ListData * b) {
+  return *(int*)a - *(int*)b;
+}
+
+void int_free(ListData* i) {
+  free(i);
+}
+
+ListData * int_copy(const ListData* i) {
+  int* c = (int*)malloc(sizeof(*c));
+  *c = *(int*)i;
+  return c;
+}
+
 TEST(t_iterator, iterator) {
   List list = list_create(int_copy, int_free, int_compare);
   ListIterator iterator = list_iterator_create(list);
