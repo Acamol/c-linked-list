@@ -50,6 +50,7 @@ extern "C" {
 
   typedef enum {
     LIST_ITERATOR_SUCCESS,
+    LIST_ITERATOR_NO_MEM,
     LIST_ITERATOR_EINVAL,
     LIST_ITERATOR_END
   } ListIteratorStatus;
@@ -241,18 +242,18 @@ extern "C" {
   *         failure.
   */
   ListData * list_pop_back(List list);
-/**
-* list_remove_iterator - Removes an element from a given list using an iterator.
-*                        After the operation, the iterator is set to the next
-*                        element, or NULL if there is no next element.
-*
-* @list:      The list to remove the element from.
-* @iterator:  An iterator pointing to an element to be removed.
-*
-* return: LIST_EINVAL if one of the arguments is NULL pointer or if the iterator
-          does not belong to the given list.
-          LIST_SUCCESS otherwise.
-*/
+  /**
+  * list_remove_iterator - Removes an element from a given list using an iterator.
+  *                        After the operation, the iterator is set to the next
+  *                        element, or NULL if there is no next element.
+  *
+  * @list:      The list to remove the element from.
+  * @iterator:  An iterator pointing to an element to be removed.
+  *
+  * return: LIST_EINVAL if one of the arguments is NULL pointer or if the iterator
+  does not belong to the given list.
+  LIST_SUCCESS otherwise.
+  */
   ListStatus list_remove_iterator(List list, ListIterator iterator);
 
   /**
@@ -470,6 +471,18 @@ extern "C" {
   ListData * list_iterator_get(ListIterator iterator);
 
   /**
+  * list_iterator_set - Sets a new value to a node through an iterator.
+  *
+  * @iterator: An iterator to the node to set the new value.
+  * @val:      The new value to set.
+  *
+  * return: LIST_ITERATOR_EINVAL if iterator is NULL pointer,
+  *         LIST_ITERATOR_NO_MEM in case of allocation failure,
+  *         LIST_ITERATOR_SUCCESS in case of success.
+  */
+  ListIteratorStatus list_iterator_set(ListIterator iterator, const ListData * val);
+
+  /**
   * list_iterator_destroy - Destroys a given iterator.
   *
   * NOTE: this function needs to be called on ANY iterator created with
@@ -484,7 +497,7 @@ extern "C" {
   * @first, @second: The two iterators to check.
   *
   * return: "true" if @first and @second point to the same element and "false"
-            otherwise.
+  otherwise.
   */
   bool list_iterator_equal(const ListIterator first, const ListIterator second);
 

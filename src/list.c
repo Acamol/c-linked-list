@@ -838,6 +838,22 @@ ListData * list_iterator_get(ListIterator iterator) {
   return iterator->node->data;
 }
 
+ListIteratorStatus list_iterator_set(ListIterator iterator, const ListData * val) {
+  if (iterator == 0 || iterator->node == 0) {
+    return LIST_ITERATOR_EINVAL;
+  }
+
+  ListData * new_data = iterator->list->data_copy(val);
+  if (new_data == 0) {
+    return LIST_ITERATOR_NO_MEM;
+  }
+
+  iterator->list->data_free(iterator->node->data);
+  iterator->node->data = new_data;
+
+  return LIST_ITERATOR_SUCCESS;
+}
+
 void list_iterator_destroy(ListIterator iterator) {
   if (iterator != 0) {
     free(iterator);

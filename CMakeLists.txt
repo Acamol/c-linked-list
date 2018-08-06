@@ -10,7 +10,7 @@ enable_language(C CXX)
 # by including "listConfig.h" in the source.
 # See listConfig.h.in for some more details.
 set(LIST_VERSION_MAJOR 0)
-set(LIST_VERSION_MINOR 0)
+set(LIST_VERSION_MINOR 1)
 
 
 # Include stuff. No change needed.

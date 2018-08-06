@@ -5,7 +5,7 @@ extern "C" {
 #include "list.h"
 }
 
-TEST(t_iterator, iterator) {
+TEST(t_list_iterator, general) {
   List list = list_create(int_copy, int_free, int_compare);
   ListIterator iterator = list_iterator_create(list);
   ASSERT_NE(list, nullptr);
@@ -127,6 +127,19 @@ TEST(t_iterator, iterator) {
   list_iterator_destroy(it);
   list_iterator_destroy(begin);
   list_iterator_destroy(end);
+
+  list_iterator_destroy(iterator);
+  list_destroy(list);
+}
+
+TEST(t_list_iterator, set) {
+  List list = list_create(string_copy, string_free, string_compare);
+  ASSERT_NE(list, nullptr);
+  list_push_back(list, "Monty Python");
+  ListIterator iterator = list_iterator_create(list);
+  EXPECT_STREQ("Monty Python", (char*)list_get_first(list, iterator));
+  list_iterator_set(iterator, "Inigo Montoya");
+  EXPECT_STREQ("Inigo Montoya", (char*)list_get_first(list, 0));
 
   list_iterator_destroy(iterator);
   list_destroy(list);

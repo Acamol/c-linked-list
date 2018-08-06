@@ -236,6 +236,11 @@ __list_iterator_get__ - Gets the data element the iterator points to.
 ListData * list_iterator_get(ListIterator iterator);
 ```
 
+__list_iterator_set__ - Sets a new value to a node through an iterator.
+```
+ListIteratorStatus list_iterator_set(ListIterator iterator, const ListData * val);
+```
+
 __list_iterator_destroy__ - Destroys a given iterator.
 ```
 void list_iterator_destroy(ListIterator iterator);
